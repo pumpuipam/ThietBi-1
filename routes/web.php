@@ -297,16 +297,7 @@ Route::prefix('admin')
             Route::post('/update', [promotionController::class, 'update'])->name('update');
         });
 
-        Route::group(['prefix' => 'rateYo', 'as' => 'rateYo.'], function () {
-            Route::get('/store', [RateYoController::class, 'store'])->name('store');
-            Route::get('/index', [RateYoController::class, 'index'])->name('index');
-            Route::get('/edit/{id}', [RateYoController::class, 'edit'])->name('edit');
-            Route::get('/update/{id}/{status}', [RateYoController::class, 'update'])->name('update');
-
-
-
-            
-        });
+     
         Route::group(['prefix' => 'address', 'as' => 'address.'], function () {
             Route::get('/index', [deliveryAddressController::class, 'index'])->name('index');
             Route::get('/create', [deliveryAddressController::class, 'create'])->name('create');
