@@ -469,7 +469,7 @@ class OrderController extends Controller
         if($request->code){
             $bill = $request->code;
             $check_bill = str_replace('OR000','',$bill);
-            $order = $order->where('id',$check_bill);
+            $order = $query->where('id',$check_bill);
             
         }
         if ($pageSize) {
