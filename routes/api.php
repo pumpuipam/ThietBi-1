@@ -21,20 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-    Route::post('/store', [UserController::class,'store'])->name('store');
-    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
-    Route::post('/update/{id}', [UserController::class,'update'])->name('update');
-    Route::post('/check-change-password', [UserController::class, 'checkChangePassword'])->name('checkChangePassword');
-    Route::post('login', [UserController::class, 'login'])->name('login');
-    Route::get('logout', [UserController::class, 'logout'])->name('logout');
-    Route::post('forget-password',[UserController::class, 'forget_password'])->name('forgetPassword'); //quên mật khẩu
-    Route::post('/add-code', [UserController::class, 'addCode'])->name('addCode'); //xác nhan mãu
-    Route::post('/accept-check-change-password', [UserController::class, 'acceptCheckChangePassword'])->name('acceptCheckChangePassword');
-});
-
-
 Route::group(['prefix' => 'category_new', 'as' => 'category_new.'], function () {
     Route::get('/index', [NewsController::class, 'index'])->name('index');
     Route::get('/index_new', [NewsController::class, 'index_new'])->name('index_new');
