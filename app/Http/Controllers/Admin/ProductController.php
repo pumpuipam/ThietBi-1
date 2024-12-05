@@ -56,7 +56,7 @@ class ProductController extends Controller
             'discount' =>  str_replace(',', '', $request->discount ?? 0),
             'points' => $request->points ? str_replace(',', '', $request->points)  : 0
         ]);
-        $Supplier = DB::table('Supplier')->where('status',1)->get();
+        $Supplier = DB::table('supplier')->where('status',1)->get();
         // dd($Supplier);
         if((int)$request->discount > (int)$request->price){
             Session::flash('error', 'Giá giảm không được lớn hơn giá !');
@@ -154,7 +154,7 @@ class ProductController extends Controller
         $this->v['product'] = $product;
         
         $this->v['TypeProduct'] = TypeProduct::get();
-        $this->v['Supplier'] = DB::table('Supplier')->where('status',1)->get();
+        $this->v['Supplier'] = DB::table('supplier')->where('status',1)->get();
         return view('admin.products.edit', $this->v);
     }
 

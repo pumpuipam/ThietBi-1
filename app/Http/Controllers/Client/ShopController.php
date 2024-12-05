@@ -101,7 +101,7 @@ class ShopController extends Controller
         }
         // dd($id);
 
-        $Supplier = DB::table('Supplier')->where('status',1)->get();
+        $Supplier = DB::table('supplier')->where('status',1)->get();
         return view('client.product', compact('name', 'categoryProduct', 
         'numberOfItemsInCart','products','cate_id_pro',
         'name_product','type_product','type_id','price_product','numberOfItemsInCartLike',

@@ -53,6 +53,8 @@ class OrderController extends Controller
                 'price' => $product->price,
                 'discount' => $product->discount ?? 0,
                 'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
+                'type_id' => 1
+            
             ]);
             return response()->json([
                'data' => $check_cart,
@@ -67,6 +69,8 @@ class OrderController extends Controller
                 'price' => $product->price,
                 'discount' => $product->discount ?? 0,
                 'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
+                'type_id' => 1
+            
             ]);
             return response()->json([
                'data' => $orderUser,
@@ -184,10 +188,11 @@ class OrderController extends Controller
         }
 
     }
-    
 
+    
     public function productToCard($id,Request $request){
-        $order = OrderUser::with('product.type_Product','product.supplier','product.category_product')->where('user_id',$id)->get();
+        $order = OrderUser::with('product.type_Product','product.supplier','product.category_product')
+        ->where('user_id',$id)->where('type_id',1)->get();
         return response()->json([
            'success' => true,
             'data' => $order,
