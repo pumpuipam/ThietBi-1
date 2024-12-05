@@ -21,10 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['prefix' => 'category_new', 'as' => 'category_new.'], function () {
-    Route::get('/index', [NewsController::class, 'index'])->name('index');
-    Route::get('/index_new', [NewsController::class, 'index_new'])->name('index_new');
-});
+
 
 
 
