@@ -140,7 +140,7 @@ class OrderController extends Controller
     public function createOrder(Request $request){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         if($request->payment_type == 2){
-            $firstName = $request->firstName;
+            $firstName = $request->firstname;
             $lastName = $request->lastname;
             $email = $request->email;
             $phone = $request->phone;
@@ -318,7 +318,7 @@ class OrderController extends Controller
                     }
            
         }else{
-            $firstName = $request->firstName;
+            $firstName = $request->firstname;
             $lastName = $request->lastname;
             $email = $request->email;
             $phone = $request->phone;
@@ -459,7 +459,9 @@ class OrderController extends Controller
     public function  myOrder(Request $request,$id) {
         $page = $request->page ?? 1;
         $pageSize = $request->per_page ?? 100;
-        $query  = Order::orderByDesc('created_at')->where('user_id', $id);
+        $query  = Order::orderByDesc('created_at')
+        ->with('Provinceid_AD','City_AD','Ward_AD')
+        ->where('user_id', $id);
         
         if($request->status){
             $order = $query->where('status', $request->status);
