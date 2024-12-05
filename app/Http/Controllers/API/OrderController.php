@@ -464,6 +464,12 @@ class OrderController extends Controller
         if($request->status){
             $order = $query->where('status', $request->status);
         }
+        if($request->code){
+            $bill = $request->code;
+            $check_bill = str_replace('OR000','',$bill);
+            $order = $order->where('id',$check_bill);
+            
+        }
         if ($pageSize) {
             $order = $query->paginate($pageSize, ['*'], 'page', $page);
         } else {

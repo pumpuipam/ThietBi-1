@@ -71,7 +71,7 @@ Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::post('/changer-product-to-cart', [OrderController::class, 'change'])->name('change');
     Route::get('/product-to-cart/{id}', [OrderController::class, 'productToCard'])->name('productToCard');
     Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
-    Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
+    // Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
 
 
 });
