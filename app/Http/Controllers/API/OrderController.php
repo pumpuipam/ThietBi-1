@@ -418,8 +418,7 @@ class OrderController extends Controller
                 $sum_vip =0;
     
                 foreach ($cart as $index => $item) {
-                    $user_order_find = OrderUser::find($item);
-                 
+                    $user_order_find = OrderUser::find($item);    
                     $orderDetail = OrderDetail::create([
                         'product_id' => $user_order_find->product_id,
                         'user_id' => $request->user_id,
@@ -429,7 +428,7 @@ class OrderController extends Controller
                         'total_payment' => $user_order_find->total_payment,
                         'discount' => (int)$user_order_find->discount,
                     ]);
-    
+                    
              
                     $orderDetails[] = $orderDetail;
                     DB::table('products')
@@ -469,7 +468,9 @@ class OrderController extends Controller
                 $user = User::find($request->user_id);
     
                 $email = $request->email;
-        
+                foreach ($cart as $index => $item) {
+                    
+                }
                 try{
                     Mail::send('email.order', [
                         'totalPayment' => $totalPayment,
@@ -497,13 +498,44 @@ class OrderController extends Controller
                     ]);
                 }
             }
-            
-
-          
-    
-            // Chuyển sang trang thanh toán với dữ liệu giỏ hàng
-            // return view('client.checkout', $this->v, compact('name', 'user_profile'));
-        // }
     }
 
+    public function edit($id){
+        $order = Order::with('orderDetail.product')->find($id);
+        if($order){
+            return response()->json([
+                'data' => $order,
+                'success' => true,
+                'message' => 'Đặt hàng thành công'
+            ]);
+        }else{
+            return response()->json([
+                'data' => null,
+                'success' => false,
+                'message' => 'Đặt hàng không tồn tại'
+            ]);
+        }
+        
+    }
+
+
+    public function  myOrder(Request $request,$id) {
+        $page = $request->page ?? 1;
+        $pageSize = $request->per_page ?? 100;
+        $query  = Order::orderByDesc('created_at')->where('user_id', $id);
+        
+        if($request->status){
+            $order = $query->where('status', $request->status);
+        }
+        if ($pageSize) {
+            $order = $query->paginate($pageSize, ['*'], 'page', $page);
+        } else {
+            $order = $query->get();
+        }
+        return response()->json([
+            'data' => $order,
+            'success' => true,
+            'message' => 'Đặt hàng thành công'
+        ]);
+    }
 }
