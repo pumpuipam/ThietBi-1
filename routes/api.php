@@ -77,4 +77,4 @@ Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
 });
 Route::get('/get-district/{id}', [UserController::class, 'getDistrict'])->name('getDistrict');
 Route::get('/get-provinceid', [UserController::class, 'getProvinceid'])->name('getProvinceid');
-Route::get('/get-get-ward/{id}', [UserController::class, 'getCityid'])->name('getCityid');
+Route::get('/get-ward/{id}', [UserController::class, 'getCityid'])->name('getCityid');
