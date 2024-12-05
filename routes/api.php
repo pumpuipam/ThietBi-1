@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::get('storage-link', function (\Illuminate\Http\Request $request) {
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    return 'Thanh cong';
+});
+
+
 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
     Route::post('/store', [UserController::class,'store'])->name('store');
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');

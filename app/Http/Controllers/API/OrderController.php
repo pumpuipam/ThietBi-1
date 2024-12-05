@@ -210,7 +210,7 @@ class OrderController extends Controller
             $address = $request->address;
             $note = $request->note;
             $vouchers = $request->vouchers;
-            $cart = $request->cart ?? array(12); 
+            $cart = $request->cart ?? array(13); 
                 $code_voucer = '';
                 $total = 0;
                 if($vouchers){
@@ -389,7 +389,7 @@ class OrderController extends Controller
             $address = $request->address;
             $note = $request->note;
             $vouchers = $request->vouchers;
-            $cart = $request->cart ?? array(12); 
+            $cart = $request->cart ?? array(13); 
                 $code_voucer = '';
                 $total = 0;
                 if($vouchers){
@@ -414,11 +414,12 @@ class OrderController extends Controller
                     'wardid' => $request->wardid,
                     'provinceid' => $request->provinceid,
                 ]);
-           
-                $sum_vip =0;
+             
+              
     
                 foreach ($cart as $index => $item) {
                     $user_order_find = OrderUser::find($item);    
+                    $sum_vip =0;
                     $orderDetail = OrderDetail::create([
                         'product_id' => $user_order_find->product_id,
                         'user_id' => $request->user_id,
@@ -468,9 +469,7 @@ class OrderController extends Controller
                 $user = User::find($request->user_id);
     
                 $email = $request->email;
-                foreach ($cart as $index => $item) {
-                    
-                }
+                
                 try{
                     Mail::send('email.order', [
                         'totalPayment' => $totalPayment,
