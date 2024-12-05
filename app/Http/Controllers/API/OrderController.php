@@ -17,70 +17,7 @@ class OrderController extends Controller
 {
     //
 
-    public function addCart(Request $request){
-        if(!$request->user_id && !$request->quantity && !$request->product_id){
-            return response()->json([
-                'success' => false,
-                'message' => 'Tên người dùng, giá,  sản phẩm không được bỏ trống'
-             ]);
-        }
-        if($request->quantity <= 0){
-            return response()->json([
-               'success' => false,
-               'message' => 'Số lượng phải lớn hơn 0'
-            ]);
-        }
-        $product = Product::find($request->product_id);
-        if(!$product){
-            return response()->json([
-               'success' => false,
-               'message' => 'Sản phẩm không tồn tại'
-            ]);
-        }
-        if($request->quantity > $product->quantity ){
-            return response()->json([
-               'success' => false,
-               'message' => 'Sản phẩm không đủ số lượg'
-            ]);
-        }
-        $check_cart = OrderUser::where('product_id',$request->product_id)->where('user_id',$request->user_id)->first();
-        if($check_cart){
-           
-            $check_cart->update([
-                'user_id' => $request->user_id,
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
-                'price' => $product->price,
-                'discount' => $product->discount ?? 0,
-                'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
-                'type_id' => 1
-            
-            ]);
-            return response()->json([
-               'data' => $check_cart,
-               'success' => true,
-               'message' => 'Thêm vào giỏ hàng thành công'
-            ]);
-        }else{
-            $orderUser = OrderUser::create([
-                'user_id' => $request->user_id,
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
-                'price' => $product->price,
-                'discount' => $product->discount ?? 0,
-                'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
-                'type_id' => 1
-            
-            ]);
-            return response()->json([
-               'data' => $orderUser,
-               'success' => true,
-               'message' => 'Thêm vào giỏ hàng thành công'
-            ]);
-        }
-       
-    }
-
+ 
 
 
     public function remove(Request $request){
@@ -290,7 +227,9 @@ class OrderController extends Controller
                 $user = User::find($request->user_id);
     
                 $email = $request->email;
-        
+                foreach ($cart as $index => $item) {
+                    $user_order_find = OrderUser::find($item)->delete();   
+                }
                 try{
                     Mail::send('email.order', [
                         'totalPayment' => $totalPayment,
@@ -307,9 +246,6 @@ class OrderController extends Controller
                     }); 
                 }catch (\Exception  $e) {   
                 }
-                     
-            
-            
                 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
                 $vnp_Returnurl = "http://127.0.0.1:8000/view-tkanks-you";
                 $vnp_TmnCode = "MFENM4DN";//Mã website tại VNPAY 
@@ -469,7 +405,9 @@ class OrderController extends Controller
                 $user = User::find($request->user_id);
     
                 $email = $request->email;
-                
+                foreach ($cart as $index => $item) {
+                    $user_order_find = OrderUser::find($item)->delete();   
+                }
                 try{
                     Mail::send('email.order', [
                         'totalPayment' => $totalPayment,
@@ -536,5 +474,134 @@ class OrderController extends Controller
             'success' => true,
             'message' => 'Đặt hàng thành công'
         ]);
+    }
+    public function addCart(Request $request){
+        if(!$request->user_id && !$request->quantity && !$request->product_id){
+            return response()->json([
+                'success' => false,
+                'message' => 'Tên người dùng, giá,  sản phẩm không được bỏ trống'
+             ]);
+        }
+        if($request->quantity <= 0){
+            return response()->json([
+               'success' => false,
+               'message' => 'Số lượng phải lớn hơn 0'
+            ]);
+        }
+        $product = Product::find($request->product_id);
+        if(!$product){
+            return response()->json([
+               'success' => false,
+               'message' => 'Sản phẩm không tồn tại'
+            ]);
+        }
+        if($request->quantity > $product->quantity ){
+            return response()->json([
+               'success' => false,
+               'message' => 'Sản phẩm không đủ số lượg'
+            ]);
+        }
+        $check_cart = OrderUser::where('product_id',$request->product_id)
+        ->where('type_id',1)
+        ->where('user_id',$request->user_id)->first();
+        if($check_cart){
+           
+            $check_cart->update([
+                'user_id' => $request->user_id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+                'price' => $product->price,
+                'discount' => $product->discount ?? 0,
+                'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
+                'type_id' => 1
+            
+            ]);
+            return response()->json([
+               'data' => $check_cart,
+               'success' => true,
+               'message' => 'Thêm vào giỏ hàng thành công'
+            ]);
+        }else{
+            $orderUser = OrderUser::create([
+                'user_id' => $request->user_id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+                'price' => $product->price,
+                'discount' => $product->discount ?? 0,
+                'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
+                'type_id' => 1
+            
+            ]);
+            return response()->json([
+               'data' => $orderUser,
+               'success' => true,
+               'message' => 'Thêm vào giỏ hàng thành công'
+            ]);
+        }
+       
+    }
+    public function addCartLike(Request $request) {
+        if(!$request->user_id && !$request->quantity && !$request->product_id){
+            return response()->json([
+                'success' => false,
+                'message' => 'Tên người dùng, giá,  sản phẩm không được bỏ trống'
+             ]);
+        }
+        if($request->quantity <= 0){
+            return response()->json([
+               'success' => false,
+               'message' => 'Số lượng phải lớn hơn 0'
+            ]);
+        }
+        $product = Product::find($request->product_id);
+        if(!$product){
+            return response()->json([
+               'success' => false,
+               'message' => 'Sản phẩm không tồn tại'
+            ]);
+        }
+        if($request->quantity > $product->quantity ){
+            return response()->json([
+               'success' => false,
+               'message' => 'Sản phẩm không đủ số lượg'
+            ]);
+        }
+        $check_cart = OrderUser::where('product_id',$request->product_id)
+        ->where('type_id',2)
+        ->where('user_id',$request->user_id)->first();
+        if($check_cart){
+           
+            $check_cart->update([
+                'user_id' => $request->user_id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+                'price' => $product->price,
+                'discount' => $product->discount ?? 0,
+                'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
+                'type_id' => 2
+            
+            ]);
+            return response()->json([
+               'data' => $check_cart,
+               'success' => true,
+               'message' => 'Thêm vào giỏ hàng thành công'
+            ]);
+        }else{
+            $orderUser = OrderUser::create([
+                'user_id' => $request->user_id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+                'price' => $product->price,
+                'discount' => $product->discount ?? 0,
+                'total_payment' => ($product->price * $request->quantity) - (($product->discount ?? 0) * $request->quantity),
+                'type_id' => 2
+            
+            ]);
+            return response()->json([
+               'data' => $orderUser,
+               'success' => true,
+               'message' => 'Thêm vào giỏ hàng thành công'
+            ]);
+        }
     }
 }

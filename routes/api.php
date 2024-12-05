@@ -63,14 +63,16 @@ Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
 
 Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::post('/add-to-cart', [OrderController::class, 'addCart'])->name('addCart');
+    Route::post('/add-to-cart-like', [OrderController::class, 'addCartLike'])->name('addCartLike');
+
     Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
     Route::get('/my-order/{id}', [OrderController::class, 'myOrder'])->name('myOrder');
-
-
     Route::post('/remove-to-cart', [OrderController::class, 'remove'])->name('remove');
     Route::post('/changer-product-to-cart', [OrderController::class, 'change'])->name('change');
     Route::get('/product-to-cart/{id}', [OrderController::class, 'productToCard'])->name('productToCard');
     Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
+    Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
+
 
 });
 Route::get('/get-district/{id}', [UserController::class, 'getDistrict'])->name('getDistrict');

@@ -131,7 +131,7 @@ class ProductsController extends Controller
 
 
     public function indexCategories() {
-        $categories = DB::table('category_product')->get();
+        $categories = DB::table('category_product')->orderBy('id','desc')->where('status',1)->get();
         return response()->json([
             'data' => $categories,
            'success' => true,
@@ -140,7 +140,7 @@ class ProductsController extends Controller
     }
 
     public function indexType() {
-        $categories = DB::table('type_product')->get();
+        $categories = DB::table('type_product')->orderBy('id','desc')->where('status',1)->get();
         return response()->json([
             'data' => $categories,
            'success' => true,

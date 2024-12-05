@@ -272,7 +272,7 @@ class UserController extends Controller
     }
 
     public function getCityid($id){ 
-        $wards = wards::where('districtid',$id)->get();
+        $wards = wards::where('districtid',(int)$id)->get();
         return response()->json([
             'data' => $wards,
            'success' => true,
