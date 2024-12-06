@@ -93,13 +93,13 @@
                             
                             </li>
                             
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('promotion.index') }}" class="waves-effect">
                                     <i class="fas fa-space-shuttle"></i>
                                     <span>Khuyến mãi</span>
                                 </a>
                             
-                            </li>
+                            </li> --}}
                         @endif
                         <li>
                             <a href="{{ route('rateYo.index') }}" class="waves-effect">
