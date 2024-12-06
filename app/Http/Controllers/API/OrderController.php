@@ -137,6 +137,16 @@ class OrderController extends Controller
         ]);
     }
 
+    public function productToCardLike($id,Request $request){
+        $order = OrderUser::with('product.type_Product','product.supplier','product.category_product')
+        ->where('user_id',$id)->where('type_id',2)->get();
+        return response()->json([
+           'success' => true,
+            'data' => $order,
+           'message' => 'Lấy thông tin giỏ hàng yêu thích thành công'
+        ]);
+    }
+    
     public function createOrder(Request $request){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         if($request->payment_type == 2){
@@ -161,7 +171,7 @@ class OrderController extends Controller
                     'address' => $address,
                     'phone' => $phone,
                     'note' => $note,
-                    'payment_type' => 1,
+                    'payment_type' => 2,
                     'status' => 0,
                     'lastname' => $lastName,
                     'firstName' => $firstName,
@@ -611,5 +621,73 @@ class OrderController extends Controller
                'message' => 'Thêm vào giỏ hàng thành công'
             ]);
         }
+    }
+
+
+    public function updateStatus(Request $request) {
+        $order = Order::find($request->id);
+        if($order){
+            $order->update([
+               'status' => $request->status
+            ]);
+            return response()->json([
+                'data' => $order,
+                'success' => true,
+                'message' => 'Cập nhật trạng thái đơn hàng thành công'
+            ]);
+        } else{
+            return response()->json([
+                'data' => null,
+                'success' => false,
+                'message' => 'Đơn hàng không tồn tại'
+            ]);
+        }
+    }
+
+    public function productTransfer(Request $request) {
+        
+            $id = $request->id;
+       
+            $order = OrderUser::find($id);
+            if($order){
+                $order_user = OrderUser::where('product_id', $order->product_id)->where('user_id', $order->user_id)->first();
+                if($order_user){
+                    $quantity  = $order_user->quantity;
+                 
+                    $sum =   $quantity + $order->quantity;
+                  
+                    $product = Product::find($order->product_id);
+            
+                    if($sum > $product->quantity){
+                        return response()->json([
+                            'data' => null,
+                           'success' => false,
+                           'message' => 'Sản phẩm không đủ số lượng'
+                        ]);
+                    }
+                    $order_user->update([
+                        'quantity' => $sum,
+                        'total_payment' => ($order_user->price*$sum) - ($order_user->discount*$sum)
+                         
+                    ]);
+                    $order = OrderUser::find($id)->delete();
+                }else{
+                    $order->update([
+                        'type_id' => 2,
+                    ]);
+                }
+                
+                return response()->json([
+                    'data' => $order,
+                    'success' => true,
+                   'message' => 'Cập nhật trạng thái chuyển hàng thành công'
+                ]);
+            } else{
+                return response()->json([
+                    'data' => null,
+                   'success' => false,
+                   'message' => 'Đơn hàng không tồn tại'
+                ]);
+            }
     }
 }

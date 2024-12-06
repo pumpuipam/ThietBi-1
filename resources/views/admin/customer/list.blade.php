@@ -60,7 +60,10 @@
                                             <tr>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Tên</th>
+                                                
                                                 <th scope="col">Email</th>
+                                                <th scope="col">Giới tính</th>
+
                                                 <th scope="col">Số điện thoại</th>
                                                 <th scope="col">Quyền</th>
                                                 <th scope="col">Trạng thái</th>
@@ -88,6 +91,9 @@
                                                         @else
                                                             <span></span>
                                                         @endif
+                                                    </td>
+                                                    <td>
+                                                        {{ $customer->gender == 1 ? 'Nam' : 'Nữ' }}
                                                     </td>
                                                     <td>
                                                         @if ($customer->phone)

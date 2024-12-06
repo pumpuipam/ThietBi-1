@@ -70,8 +70,14 @@ Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::post('/remove-to-cart', [OrderController::class, 'remove'])->name('remove');
     Route::post('/changer-product-to-cart', [OrderController::class, 'change'])->name('change');
     Route::get('/product-to-cart/{id}', [OrderController::class, 'productToCard'])->name('productToCard');
+    Route::get('/product-to-cart-like/{id}', [OrderController::class, 'productToCardLike'])->name('productToCardLike');
+
     Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
-    // Route::post('/checkout', [OrderController::class, 'createOrder'])->name('createOrder');
+
+    Route::post('/update-status', [OrderController::class, 'updateStatus'])->name('updateStatus');
+    Route::post('/product-transfer', [OrderController::class, 'productTransfer'])->name('productTransfer');
+
+
 
 
 });
