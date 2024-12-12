@@ -21,12 +21,15 @@ class OrderController extends Controller
 
 
     public function remove(Request $request){
+        
         if(!$request->user_id && !$request->product_id){
             return response()->json([
                 'success' => false,
                 'message' => 'Tên người dùng, giá,  sản phẩm không được bỏ trống'
              ]);
+        }
         if($request->type == 2){
+           
             $check_cart = OrderUser::where('product_id',$request->product_id)->where('user_id',$request->user_id)->where('type_id',2)->first();
             
         }else{
@@ -46,7 +49,7 @@ class OrderController extends Controller
             ]);
 
         }
-    }
+    
     }
 
 
