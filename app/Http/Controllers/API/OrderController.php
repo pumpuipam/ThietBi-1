@@ -26,8 +26,12 @@ class OrderController extends Controller
                 'success' => false,
                 'message' => 'Tên người dùng, giá,  sản phẩm không được bỏ trống'
              ]);
+        if($request->type == 2){
+            $check_cart = OrderUser::where('product_id',$request->product_id)->where('user_id',$request->user_id)->where('type_id',2)->first();
+            
+        }else{
+            $check_cart = OrderUser::where('product_id',$request->product_id)->where('user_id',$request->user_id)->where('type_id',1)->first();
         }
-        $check_cart = OrderUser::where('product_id',$request->product_id)->where('user_id',$request->user_id)->first();
         if($check_cart){
             $check_cart->delete();
             return response()->json([
