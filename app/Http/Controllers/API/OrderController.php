@@ -31,6 +31,7 @@ class OrderController extends Controller
             
         }else{
             $check_cart = OrderUser::where('product_id',$request->product_id)->where('user_id',$request->user_id)->where('type_id',1)->first();
+
         }
         if($check_cart){
             $check_cart->delete();
@@ -45,6 +46,7 @@ class OrderController extends Controller
             ]);
 
         }
+    }
     }
 
 
