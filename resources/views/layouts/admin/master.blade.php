@@ -36,86 +36,86 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"  />
- <!-- JAVASCRIPT -->
- <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/metismenu/metisMenu.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/node-waves/waves.min.js') }}"></script>
 
- <script src="{{ asset('admin/assets/libs/parsleyjs/parsley.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/parsleyjs/parsley.min.js') }}"></script>
 
- <script src="{{ asset('admin/assets/js/pages/form-validation.init.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/form-validation.init.js') }}"></script>
 
- <!-- Peity chart-->
- <script src="{{ asset('admin/assets/libs/peity/jquery.peity.min.js') }}"></script>
+    <!-- Peity chart-->
+    <script src="{{ asset('admin/assets/libs/peity/jquery.peity.min.js') }}"></script>
 
- <!-- Plugin Js-->
- <script src="{{ asset('admin/assets/libs/chartist/chartist.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js') }}"></script>
+    <!-- Plugin Js-->
+    <script src="{{ asset('admin/assets/libs/chartist/chartist.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js') }}"></script>
 
- <script src="{{ asset('admin/assets/js/pages/dashboard.init.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/dashboard.init.js') }}"></script>
 
- {{-- Date --}}
- <script src="{{ asset('admin/assets/libs/select2/js/select2.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+    {{-- Date --}}
+    <script src="{{ asset('admin/assets/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
 
- <script src="{{ asset('admin/assets/js/pages/form-advanced.init.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/form-advanced.init.js') }}"></script>
 
- {{-- end date --}}
+    {{-- end date --}}
 
- <!-- form mask -->
- <script src="{{ asset('admin/assets/libs/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
+    <!-- form mask -->
+    <script src="{{ asset('admin/assets/libs/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 
- <!-- form mask init -->
- <script src="{{ asset('admin/assets/js/pages/form-mask.init.js') }}"></script>
+    <!-- form mask init -->
+    <script src="{{ asset('admin/assets/js/pages/form-mask.init.js') }}"></script>
 
- <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
- <!-- init js -->
- <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
+    <!-- init js -->
+    <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
 
- <!-- form wizard -->
- {{-- <script src="{{ asset('admin/assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script> --}}
+    <!-- form wizard -->
+    {{-- <script src="{{ asset('admin/assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script> --}}
 
- <!-- form wizard init -->
- <script src="{{ asset('admin/assets/js/pages/form-wizard.init.js') }}"></script>
+    <!-- form wizard init -->
+    <script src="{{ asset('admin/assets/js/pages/form-wizard.init.js') }}"></script>
 
- <script src="{{ asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
- <!--tinymce js-->
- <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
+    <!--tinymce js-->
+    <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
- <!-- init js -->
- <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
+    <!-- init js -->
+    <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
 
- <!-- Summernote -->
- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!-- Summernote -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
- <!--Morris Chart-->
- <script src="{{ asset('admin/assets/libs/morris.js/morris.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/raphael/raphael.min.js') }}"></script>
+    <!--Morris Chart-->
+    <script src="{{ asset('admin/assets/libs/morris.js/morris.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/raphael/raphael.min.js') }}"></script>
 
- <!-- Init js -->
- <script src="{{ asset('admin/assets/js/pages/morris.init.js') }}"></script>
+    <!-- Init js -->
+    <script src="{{ asset('admin/assets/js/pages/morris.init.js') }}"></script>
 
- <!-- flot plugins -->
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.time.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.resize.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.pie.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.selection.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.stack.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot.curvedlines/curvedLines.js') }}"></script>
- <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.crosshair.js') }}"></script>
+    <!-- flot plugins -->
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.selection.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.stack.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot.curvedlines/curvedLines.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot-charts/jquery.flot.crosshair.js') }}"></script>
 
- <!-- flot init -->
- <script src="{{ asset('admin/assets/js/pages/flot.init.js') }}"></script>
+    <!-- flot init -->
+    <script src="{{ asset('admin/assets/js/pages/flot.init.js') }}"></script>
+
 </head>
 
 <body data-sidebar="dark">
@@ -185,6 +185,7 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
+    <!-- JAVASCRIPT -->
    
 
     @yield('script')
